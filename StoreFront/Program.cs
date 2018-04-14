@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using StoreFront.Models;
 
 namespace StoreFront
 {
@@ -14,7 +16,23 @@ namespace StoreFront
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+
+            using(var scope = host.Services.CreateScope()){
+
+                var services = scope.ServiceProvider;
+
+                try{
+                    Seeds.Initialize(services);
+                }
+                catch(Exception exception){
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(exception, "The DB Could not be seeded");
+                }
+
+            }
+
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
