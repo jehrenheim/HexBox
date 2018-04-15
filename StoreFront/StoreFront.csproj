@@ -9,14 +9,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Models\EmptyClass.cs" />
+    <Compile Remove="Migrations\20180414224312_UpdateToGames.cs" />
+    <Compile Remove="Migrations\20180414211347_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20180414211347_InitialCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Migrations\.DS_Store" />
   </ItemGroup>
 </Project>

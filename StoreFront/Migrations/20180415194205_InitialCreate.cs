@@ -9,18 +9,17 @@ namespace StoreFront.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Category",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Category = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false)
+                    Image = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.ID);
+                    table.PrimaryKey("PK_Category", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,18 +29,37 @@ namespace StoreFront.Migrations
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ColorCode = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    ProductID = table.Column<int>(type: "INTEGER", nullable: true)
+                    Name = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Color", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    DefaultImage = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    NumberOfPlayers = table.Column<string>(type: "TEXT", nullable: true),
+                    PlayTime = table.Column<string>(type: "TEXT", nullable: true),
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Rating = table.Column<decimal>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Color_Product_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "Product",
+                        name: "FK_Product_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,11 +91,6 @@ namespace StoreFront.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Color_ProductID",
-                table: "Color",
-                column: "ProductID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Image_ColorId",
                 table: "Image",
                 column: "ColorId");
@@ -86,6 +99,11 @@ namespace StoreFront.Migrations
                 name: "IX_Image_ProductId",
                 table: "Image",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_CategoryId",
+                table: "Product",
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -98,6 +116,9 @@ namespace StoreFront.Migrations
 
             migrationBuilder.DropTable(
                 name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "Category");
         }
     }
 }

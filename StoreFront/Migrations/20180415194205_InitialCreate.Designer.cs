@@ -10,8 +10,8 @@ using System;
 namespace StoreFront.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20180414224312_UpdateToGames")]
-    partial class UpdateToGames
+    [Migration("20180415194205_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

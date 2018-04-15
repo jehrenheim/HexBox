@@ -12,6 +12,30 @@ namespace StoreFront.Models
             using(var context = new StoreContext(
                 serviceProvider.GetRequiredService<DbContextOptions<StoreContext>>()))
             {
+                if (!context.Category.Any())
+                {
+                    context.Category.AddRange(
+                        new Category
+                        {
+                            Name = "Deck Building",
+                            Image = "Categories/deck.jpg",
+                            ID = 1
+                        },
+                        new Category
+                        {
+                            Name = "Strategy",
+                            Image = "Categories/strategy.jpg",
+                            ID = 2
+                        },
+                        new Category
+                        {
+                            Name = "Fantasy",
+                            Image = "Categories/fantasy.jpg",
+                            ID = 3
+                        }
+                    );
+                    context.SaveChanges();
+                }
                 if (!context.Product.Any())
                 {
                     context.Product.AddRange(
@@ -94,26 +118,182 @@ namespace StoreFront.Models
                     );
                     context.SaveChanges();
                 }
-                if (!context.Category.Any())
+
+                if (!context.Image.Any())
                 {
-                    context.Category.AddRange(
-                        new Category
+                    context.Image.AddRange(
+                        new Image
                         {
-                            Name = "Deck Building",
-                            Image = "Categories/deck.jpg",
-                            ID = 1
+                            Url = "Gloomhaven/cover.jpg",
+                            Place = 1,
+                            ProductId = 1
                         },
-                        new Category
+                        new Image
                         {
-                            Name = "Strategy",
-                            Image = "Categories/strategy.jpg",
-                            ID = 2
+                        Url = "Gloomhaven/gameplay1.jpg",
+                            Place = 2,
+                            ProductId = 1
                         },
-                        new Category
+                        new Image
                         {
-                            Name = "Fantasy",
-                            Image = "Categories/fantasy.jpg",
-                            ID = 3
+                        Url = "Gloomhaven/gameplay2.jpg",
+                            Place = 3,
+                            ProductId = 1
+                        },
+                        new Image
+                        {
+                        Url = "Gloomhaven/gameplay3.jpg",
+                            Place = 4,
+                            ProductId = 1
+                    },
+                        new Image
+                        {
+                            Url = "Gloomhaven/gameplay4.jpg",
+                            Place = 5,
+                            ProductId = 1
+                        }
+                    );
+                    context.Image.AddRange(
+                        new Image
+                        {
+                            Url = "7Wonders/cover.jpg",
+                            Place = 1,
+                            ProductId = 2
+                        },
+                        new Image
+                        {
+                            Url = "7Wonders/gameplay1.jpg",
+                            Place = 2,
+                            ProductId = 2
+                        },
+                        new Image
+                        {
+                        Url = "7Wonders/gameplay2.jpg",
+                            Place = 3,
+                            ProductId = 2
+                        },
+                        new Image
+                        {
+                        Url = "7Wonders/gameplay3.jpg",
+                            Place = 4,
+                            ProductId = 2
+                        }
+                    );
+                    context.Image.AddRange(
+                        new Image
+                        {
+                            Url = "Civilization/cover.jpg",
+                            Place = 1,
+                            ProductId = 3
+                        },
+                        new Image
+                        {
+                        Url = "Civilization/gameplay1.jpg",
+                            Place = 2,
+                            ProductId = 3
+                        },
+                        new Image
+                        {
+                        Url = "Civilization/gameplay2.jpg",
+                            Place = 3,
+                            ProductId = 3
+                        },
+                        new Image
+                        {
+                        Url = "Civilization/gameplay3.jpg",
+                            Place = 4,
+                            ProductId = 3
+                        },
+                        new Image
+                        {
+                        Url = "Civilization/gameplay4.jpg",
+                            Place = 5,
+                            ProductId = 3
+                        }
+                    );
+                    context.Image.AddRange(
+                        new Image
+                        {
+                            Url = "Dominion/cover.jpg",
+                            Place = 1,
+                            ProductId = 4
+                        },
+                        new Image
+                        {
+                        Url = "Dominion/gameplay1.jpg",
+                            Place = 2,
+                            ProductId = 4
+                        },
+                        new Image
+                        {
+                        Url = "Dominion/gameplay2.jpg",
+                            Place = 3,
+                            ProductId = 4
+                        },
+                        new Image
+                        {
+                        Url = "Dominion/gameplay3.jpg",
+                            Place = 4,
+                            ProductId = 4
+                        }
+                    );
+                    context.Image.AddRange(
+                        new Image
+                        {
+                            Url = "Splendor/cover.jpg",
+                            Place = 1,
+                            ProductId = 5
+                        },
+                        new Image
+                        {
+                        Url = "Splendor/gameplay1.jpg",
+                            Place = 2,
+                            ProductId = 5
+                        },
+                        new Image
+                        {
+                        Url = "Splendor/gameplay2.jpg",
+                            Place = 3,
+                            ProductId = 5
+                        },
+                        new Image
+                        {
+                        Url = "Splendor/gameplay3.jpg",
+                            Place = 4,
+                            ProductId = 5
+                        }
+                    );
+                    context.Image.AddRange(
+                        new Image
+                        {
+                            Url = "AxisAndAllies/cover.jpg",
+                            Place = 1,
+                            ProductId = 6
+                        },
+                        new Image
+                        {
+                        Url = "AxisAndAllies/gameplay1.jpg",
+                            Place = 2,
+                            ProductId = 6
+                        },
+                        new Image
+                        {
+                        Url = "AxisAndAllies/gameplay2.jpg",
+                            Place = 3,
+                            ProductId = 6
+                        },
+                        new Image
+                        {
+                        Url = "AxisAndAllies/gameplay3.jpg",
+                            Place = 4,
+                            ProductId = 6
+                        }
+                        ,
+                        new Image
+                        {
+                            Url = "AxisAndAllies/gameplay4.jpg",
+                            Place = 5,
+                            ProductId = 6
                         }
                     );
                     context.SaveChanges();
