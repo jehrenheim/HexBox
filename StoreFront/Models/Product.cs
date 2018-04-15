@@ -7,10 +7,15 @@ namespace StoreFront.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public decimal Price { get; set; }
-        public string Category { get; set; }
+        public decimal Rating { get; set; }
+        public string NumberOfPlayers { get; set; }
+        public string PlayTime { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        public string DefaultImage { get; set; }
         public List<Image> Images { get; set; }
-        public List<Color> Colors { get; set; }
 
         public Product()
         {

@@ -4,16 +4,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StoreFront.Models;
 
 namespace StoreFront.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly StoreContext _context;
+
+        public HomeController(StoreContext context)
         {
-            
-            return View();
+            _context = context;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var products = await _context.Product.Include(product => product.Category).ToListAsync();
+            return View(products);
         }
 
         public IActionResult Shop(int ID)

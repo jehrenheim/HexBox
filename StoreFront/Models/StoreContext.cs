@@ -11,6 +11,6 @@ namespace StoreFront.Models
         }
         public DbSet<StoreFront.Models.Product> Product { get; set; }
         public DbSet<StoreFront.Models.Image> Image { get; set; }
-        public DbSet<StoreFront.Models.Color> Color { get; set; }
+        public DbSet<StoreFront.Models.Category> Category { get; set; }
     }
 }
