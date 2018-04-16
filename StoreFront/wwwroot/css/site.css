@@ -1,35 +1,254 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px
+    background-color: #fafafa;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+}
+.navbar-nav > li > a {
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+.section{
+    padding: 4em 0;
+}
+a {
+    color:#333333;
+    text-decoration: none !important;
+}
+    a:hover, a:focus {
+        color: #FF9933;
+    }
+.ta-center{
+    text-align:center;
+}
+nav.navbar {
+    background-color: #FFFFFF;
+
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px
+.navbar-header {
+    display: block;
+    float: none;
+    text-align: center
+}
+div#logo {
+    height: 100px;
+}
+div#logo>img {
+    height: 100%;
+}
+.product-title {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 1em;
+    padding-bottom:0;
+    color: #FF9933;
+}
+.product-price {
+    font-size: 1em;
+    text-align: center;
+    padding-bottom: 1em;
+    color: #CCC;
+}
+.product {
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    opacity: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #FFFFFF;
+    margin-bottom: 30px
+}
+.product-wrap:hover .product:not(:hover) {
+    opacity:0.6;
+}
+.product-image {
+    display: block;
+    padding: 20px;
+    background-image: url('../images/Assets/escheresque/escheresque_@2X.png');
+    background-size:46px 29px;
+    background-repeat:repeat;
+}
+.product-image-cover {
+    width: 100%;
+    height: 200px;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.product-players {
+    display: inline-block;
+    width: 50%;
+    border-top: solid 2px #ececec;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    color:#cccccc;
+    float:left;
+}
+.product-time {
+    display: inline-block;
+    width: 50%;
+    border-top: solid 2px #ececec;
+    border-left: solid 2px #ececec;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #cccccc;
+}
+#shop-window {
+    padding: 20px;
+    background-image: url('../images/Assets/escheresque_ste/escheresque_ste_@2X.png');
+    background-size: 46px 29px;
+    background-repeat: repeat;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4
+div#shop-image {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    position:relative;
+    display:inline-block;
+}
+.shop-image-large {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity:0;
+    -webkit-transition: opacity ease-in-out 0.3s;
+    transition: opacity ease-in-out 0.3s;
+}
+.shop-image-large.active {
+    opacity:1;
+}
+.shop-image-preview {
+    display: inline-block;
+    width: 100%;
+    max-width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: solid rgba(255,2552,255,0) 4px;
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;    cursor:pointer;
+}
+.shop-image-preview.active {
+    border: solid rgba(255,2552,255,1) 4px;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%
+#shop-name {
+    font-size: 3em;
+    color: #FF9933;
 }
-
-/* QR code generator */
-#qrCode {
-    margin: 15px
+.fa-star {
+    color: #FF9933;
 }
-
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none
+.fa-star-o, #shop-category {
+    color: rgba(255,255,255,0.5)
+}
+@media (min-width: 768px) {
+    .eq-row {
+        display: table;
+        width:100%;
+    }
+    .eq-row .eq-col {
+        float: none;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .navbar-nav > li {
+        display: inline-block;
+        float:none;
+    }
+    .navbar-nav {
+        float:none;
+    }
+    .add-to-cart{
+        text-align:right;
     }
 }
+button.navbar-toggle {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+}
+.navbar-toggle .icon-bar {
+    background-color:#333333;
+}
+#cart {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    padding:10px;
+}
+#cart-button{
+    font-size:2em;
+}
+a > #logo {
+    color: #333;
+    font-size: 2em;
+    font-weight: 700;
+}
+.price-row{
+    background-color:#FFFFFF;
+}
+.price-row>div {
+    padding:2em;
+}
+.shop-block {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 1em;
+}
+.section-title {
+    display: block;
+    color: #FF9933;
+    border-bottom: solid #FF9933 3px;
+    font-size:1.5em;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.related-image > img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+div#shop-image-previews {
+    margin-top: 20px;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 5px;
+}
+.shop-price {
+    font-size: 2em;
+    color: #ececec;
+    margin-bottom: 10px;
+}
+.filter-category {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+    margin-top: 10px;
+    cursor: pointer;
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    border-right: solid 4px #FFFFFF;
+}
+.filter-category.active {
+    color: #FF9933;
+    border-right:solid 4px #FF9933;
+}
+.product-show{
+    display:none;
+}
+.product-show.show{
+    display:block !important;
+}
+

@@ -1,0 +1,73 @@
+﻿@model StoreFront.Models.Product
+
+<div id="shop-window">
+    <div class="container">
+        <div class="row eq-row">
+            <div class="shop-images col-xs-12 col-md-4 eq-col ta-center">
+                <div id="shop-image">
+                    @foreach(var Image in Model.Images){
+                        <div class="shop-image-large @(Model.Images.First() == Image ? "active" : "")" data-id="@Image.ID" style="background-image:url('@Url.Content("~/images/"+Image.Url)');"></div>
+                    }
+                </div>
+
+               
+            </div>
+            <div class="col-xs-12 col-md-8 shop-info eq-col">
+                <div class="row">
+                    
+                    <div class="col-md-7">
+                        <div id="shop-name">@Model.Name</div>
+                        <div id="shop-category">@Model.Category.Name | <i class="fa fa-users"></i> @Model.NumberOfPlayers</div>
+                         <div id="shop-rating">
+                            @for(var i = 1 ; i < 6 ; i++){
+                                if(i > (int)Model.Rating){
+                                    <i class="fa fa-star-o"></i>
+                                }else{
+                                    <i class="fa fa-star"></i>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-5 add-to-cart">
+                        <div class="shop-price">$@Model.Price</div>
+                        <div class="btn btn-primary">Add To Cart</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div id="shop-image-previews" class="row">
+                            @foreach(var Image in Model.Images){
+                                <div  class="col-xs-4 col-md-2 ta-center">
+                                    <div class="shop-image-preview @(Model.Images.First() == Image ? "active" : "")" data-id="@Image.ID" style="background-image:url('@Url.Content("~/images/"+Image.Url)');"></div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8">
+                <div class="shop-block">
+                    <div class="section-title">Description</div>
+                    <div>@Model.Description</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                @if((bool)ViewData["related"]){
+                    <div class="shop-block">
+                        <div class="section-title">Like This Game?</div>
+                        <a asp-controller="Home" asp-action="Shop" asp-route-id="@Model.RelatedProduct.ID">
+                            <div class="related-image"><img src="@Url.Content("~/images/"+Model.RelatedProduct.DefaultImage)" /></div>
+                            <div class="ta-center"><div class="btn btn-primary">Try @Model.RelatedProduct.Name</div></div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

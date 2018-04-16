@@ -1,8 +1,41 @@
 ﻿@model IEnumerable<StoreFront.Models.Product>
 @{
     ViewData["Title"] = "Welcome to Honor Home";
+    var categories = ViewData["Categories"] as IEnumerable<StoreFront.Models.Category>;
 }
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="shop-block">
+                <div class="select-box">
+                    <div class="section-title">Filter By Category</div>
+                    <div class="filter-category active" data-id="0">All</div>
+                    @foreach(var cat in categories){
+                        <div class="filter-category" data-id="@cat.ID">@cat.Name</div>
+                    }
+                 </div>
+            </div>
+        </div>
+        <div class="col-md-9">
 
-@foreach(var Product in Model){
-    <div>@Product.Name</div>
-}
+            <div class="row product-wrap">
+            @foreach(var Product in Model){
+                <div class="col-md-4 col-sm-6 show product-show" data-category="@Product.CategoryId">
+                    <a asp-controller="Home" asp-action="Shop" asp-route-id="@Product.ID">
+                        <div class="product">
+                            <div class="product-image">
+                                <div class="product-image-cover" style="background-image:url('@Url.Content("~/images/"+Product.DefaultImage)');"></div>
+                            </div>
+                            <div class="product-title">@Product.Name</div>
+                            <div class="product-price">@Product.Price</div>
+                            <div class="product-players"><i class="fa fa-users"></i> @Product.NumberOfPlayers</div>
+                            <div class="product-time"><i class="fa fa-clock-o"></i> @Product.PlayTime</div>
+                        </div>
+                    </a>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+
+</div>

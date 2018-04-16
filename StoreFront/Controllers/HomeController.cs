@@ -20,14 +20,39 @@ namespace StoreFront.Controllers
         public async Task<IActionResult> Index()
         {
             var products = await _context.Product.Include(product => product.Category).ToListAsync();
+
+            var categories = _context.Category.OrderBy(x => x.Name).ToList();
+
+            ViewData["Categories"] = categories;
+
             return View(products);
         }
 
-        public IActionResult Shop(int ID)
+        public async Task<IActionResult> Shop(int? id)
         {
-            ViewData["Message"] = "Your application description page.";
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            return View();
+            var product = await _context.Product.Include(p => p.Images).Include(p => p.Category).SingleOrDefaultAsync(p => p.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            product.Images = product.Images.OrderBy(x => x.Place).ToList();
+            var relatedProduct = _context.Product.Where(x => x.CategoryId == product.CategoryId).Where(x => x.ID != product.ID).FirstOrDefault();
+            if (relatedProduct == null)
+            {
+                ViewData["related"] = false;
+            }
+            else
+            {
+                ViewData["related"] = true;
+                product.RelatedProduct = relatedProduct;
+            }
+
+            return View(product);
         }
 
         public IActionResult Contact()

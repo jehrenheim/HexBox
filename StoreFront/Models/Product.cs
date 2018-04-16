@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StoreFront.Models
 {
@@ -14,6 +15,8 @@ namespace StoreFront.Models
         public string PlayTime { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        [NotMapped]
+        public Product RelatedProduct { get; set; }
         public string DefaultImage { get; set; }
         public List<Image> Images { get; set; }
 
